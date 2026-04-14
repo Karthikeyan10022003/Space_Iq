@@ -1,0 +1,23 @@
+{
+    "name": "space_iq_backend",
+    "version": "1.0.0",
+    "description": "Google Analytics dashboard backend",
+    "main": "server.js",
+    "type": "commonjs",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js"
+    },
+    "keywords": [],
+    "author": "Karthik",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^17.4.2",
+        "express": "^4.19.2",
+        "googleapis": "^133.0.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.0"
+    }
+}
