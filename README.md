@@ -1,87 +1,44 @@
-# Space IQ — Analytics Dashboard
+# Space-IQ: Unified Deployment Guide
 
-A premium, enterprise-grade analytics dashboard for **The Hive Workspaces**, built with React + Node.js and powered by the Google Analytics 4 (GA4) Data API.
+Your project has been reorganized into a **Vercel "Golden Path"** structure. This setup ensures that your React frontend and Node.js backend work together perfectly on a single Vercel project.
 
-## Features
+## 🚀 Step-by-Step Fresh Deployment
 
-- 📊 **Live GA4 Analytics** — Realtime active users, page views, traffic sources, device breakdown, top pages, and countries
-- 📣 **Google Ads** — Campaign performance: impressions, clicks, CTR, CPC, ROAS, conversions
-- 📘 **Facebook Ads** — Meta Ads Manager: reach, placements, age breakdown, ad sets
-- 💼 **LinkedIn Ads** — B2B lead generation: job functions, seniority mix, campaign CPL
-- 🎨 **Premium dark UI** — Charcoal/black base with restrained red accent (`#E11D48`), built with Tailwind CSS + Recharts
+Follow these steps exactly to host your app freshly on Vercel:
 
-## Tech Stack
-
-| Layer | Tech |
-|---|---|
-| Frontend | React 18, Tailwind CSS, Recharts |
-| Backend | Node.js, Express |
-| Analytics | Google Analytics 4 Data API (GA4) |
-| Auth | Google OAuth2 |
-| Build | Vite |
-
-## Getting Started
-
-### 1. Clone the repo
+### 1. Push Your Code
+Commit and push the latest changes to your GitHub repository.
 ```bash
-git clone https://github.com/Karthikeyan10022003/Space_Iq.git
-cd Space_Iq
+git add .
+git commit -m "Clean slate: Unified project structure"
+git push
 ```
 
-### 2. Set up environment variables
-```bash
-cp .env.example .env
-# Fill in your Google OAuth credentials in .env
-```
+### 2. Create a NEW Project in Vercel
+1. Go to your [Vercel Dashboard](https://vercel.com/dashboard).
+2. Click **Add New... > Project**.
+3. Import your GitHub repository.
 
-### 3. Install dependencies
-```bash
-# Backend
-npm install
+### 3. Configure the Fresh Build
+On the "Configure Project" screen, ensure these settings are used:
+- **Framework Preset**: Vite
+- **Root Directory**: `./`
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
 
-# Frontend
-cd client && npm install
-```
+### 4. Set Environment Variables
+Add these variables in the **Environment Variables** section:
+- `GOOGLE_CLIENT_ID`
+- `GOOGLE_CLIENT_SECRET`
+- `GA4_PROPERTY_ID`
+- `REDIRECT_URI`: `https://space-iq-iota.vercel.app/auth/callback`
 
-### 4. Authenticate with Google
-Start the backend and navigate to the auth URL:
-```bash
-npm run dev
-# Visit: http://localhost:3001/auth/login
-```
+### 5. Deploy!
+Click **Deploy**. 
 
-### 5. Start the frontend
-```bash
-cd client
-npm run dev
-# Visit: http://localhost:5173
-```
+---
 
-## Environment Variables
-
-See `.env.example` for required variables:
-
-```
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-REDIRECT_URI=http://localhost:3001/auth/callback
-GA4_PROPERTY_ID=
-PORT=3001
-```
-
-## Project Structure
-
-```
-space_iq/
-├── server.js              # Express backend + GA4 API routes
-├── .env                   # Secrets (gitignored)
-├── .env.example           # Template
-└── client/
-    └── src/
-        ├── pages/         # AnalyticsPage, GoogleAdsPage, FacebookAdsPage, LinkedInPage
-        ├── components/
-        │   ├── analytics/ # KPICards, Charts, Tables
-        │   ├── layout/    # Sidebar, TopHeader
-        │   └── ui/        # Skeleton, ErrorState
-        └── hooks/         # useRealtimeData
-```
+## ✅ Why this works:
+- **Unified Domain**: Frontend and Backend share the same URL, preventing CORS errors.
+- **Auto-Routing**: Vercel handles the `/api` folder automatically as a backend.
+- **OAuth Safety**: The login redirect will now always match between your local env and production.
