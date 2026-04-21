@@ -304,14 +304,18 @@ app.get("/api/devices", requireAuth, async (req, res) => {
 // ─── ROUTE: FULL DASHBOARD — Everything in one call ───────────────────────────
 app.get("/api/dashboard", requireAuth, async (req, res) => {
     try {
+        const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'http';
+        const host = req.headers.host;
+        const baseUrl = `${protocol}://${host}`;
+
         const [realtime, realtimeCountries, overview, pages, sources, devices] =
             await Promise.allSettled([
-                fetch(`http://localhost:3001/api/realtime/all`).then((r) => r.json()),
-                fetch(`http://localhost:3001/api/realtime/countries`).then((r) => r.json()),
-                fetch(`http://localhost:3001/api/overview`).then((r) => r.json()),
-                fetch(`http://localhost:3001/api/pages`).then((r) => r.json()),
-                fetch(`http://localhost:3001/api/sources`).then((r) => r.json()),
-                fetch(`http://localhost:3001/api/devices`).then((r) => r.json()),
+                fetch(`${baseUrl}/api/realtime/all`).then((r) => r.json()),
+                fetch(`${baseUrl}/api/realtime/countries`).then((r) => r.json()),
+                fetch(`${baseUrl}/api/overview`).then((r) => r.json()),
+                fetch(`${baseUrl}/api/pages`).then((r) => r.json()),
+                fetch(`${baseUrl}/api/sources`).then((r) => r.json()),
+                fetch(`${baseUrl}/api/devices`).then((r) => r.json()),
             ]);
 
         res.json({
