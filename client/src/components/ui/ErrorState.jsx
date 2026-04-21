@@ -32,7 +32,7 @@ export default function ErrorState({ error, onRetry }) {
         <div className="flex items-center justify-center gap-3">
           {isAuth && (
             <a
-              href={import.meta.env.PROD ? 'https://space-iq-iota.vercel.app/auth/login' : '/auth/login'}
+              href="/auth/login"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all"
               style={{ background: 'var(--accent-gold)', color: '#fff' }}
             >

@@ -41,7 +41,7 @@ app.get("/auth/callback", async (req, res) => {
         const { tokens } = await OAuth2Client.getToken(code);
         OAuth2Client.setCredentials(tokens);
         global.savedTokens = tokens;
-        res.redirect(IS_PROD ? "https://space-iq-iota.vercel.app" : "http://localhost:5173");
+        res.redirect(IS_PROD ? "/" : "http://localhost:5173");
     } catch (err) {
         res.status(500).send(`Auth failed: ${err.message}`);
     }
