@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Design Tokens ─────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Design Tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root {
   --bg-base:        #0B0F14;
   --bg-card:        #111827;
@@ -12,13 +12,13 @@
   --bg-header:      rgba(11, 15, 20, 0.85);
   --border:         rgba(255, 255, 255, 0.08);
   --border-hover:   rgba(255, 255, 255, 0.15);
-  --accent-red:     #E11D48;
+  --accent-gold: #f6d8a0;
   --text-primary:   #F3F4F6;
   --text-secondary: #9CA3AF;
   --text-muted:     #4B5563;
 }
 
-/* ─── Base ──────────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Base â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
 
@@ -40,7 +40,7 @@
   #root { min-height: 100vh; display: flex; }
 }
 
-/* ─── Custom Utilities ──────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Custom Utilities â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @layer utilities {
   /* Glassmorphism */
   .glass {
@@ -84,10 +84,10 @@
     background: rgba(255,255,255,0.04);
     color: var(--text-primary);
     font-weight: 600;
-    box-shadow: inset 3px 0 0 var(--accent-red);
+    box-shadow: inset 3px 0 0 var(--accent-gold);
     border-radius: 4px;
   }
-  .nav-item.active .nav-icon { color: var(--accent-red); }
+  .nav-item.active .nav-icon { color: var(--accent-gold); }
 
   /* Mono font */
   .font-mono { font-family: 'JetBrains Mono', monospace; }
@@ -116,7 +116,7 @@
   .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
 }
 
-/* ─── Animations ────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @keyframes shimmer {
   0%   { background-position: -200% 0; }
   100% { background-position:  200% 0; }
@@ -144,13 +144,13 @@
   animation: fadeIn 0.3s ease both;
 }
 
-/* ─── Recharts overrides ────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Recharts overrides â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .recharts-cartesian-axis-tick text { fill: #64748B !important; font-size: 11px; }
 .recharts-cartesian-grid-horizontal line,
 .recharts-cartesian-grid-vertical   line { stroke: rgba(255,255,255,0.04) !important; }
 .recharts-tooltip-wrapper { outline: none !important; }
 
-/* ─── Global scrollbar ──────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Global scrollbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 ::-webkit-scrollbar       { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg-base); }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.07); border-radius: 4px; }

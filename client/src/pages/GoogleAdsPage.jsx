@@ -1,6 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LineChart, Line } from 'recharts';
 
-// ─── Mock Data ────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Mock Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const kpis = [
   { label: 'Impressions', value: '1.24M', change: +14.2, isKey: false, icon: 'eye' },
   { label: 'Clicks', value: '38,402', change: +8.7, isKey: true, icon: 'cursor' },
@@ -23,11 +23,11 @@ const weeklySpend = [
 ];
 
 const campaigns = [
-  { name: 'Brand – Branded Keywords', impressions: 312000, clicks: 14200, ctr: 4.55, cpc: 0.88, spend: 12496, conv: 1104, roas: 8.4, status: 'active' },
-  { name: 'Search – Competitor Terms', impressions: 198000, clicks: 7900,  ctr: 3.99, cpc: 1.62, spend: 12798, conv: 543,  roas: 5.9, status: 'active' },
-  { name: 'Display – Remarketing',     impressions: 480000, clicks: 5200,  ctr: 1.08, cpc: 2.10, spend: 10920, conv: 371,  roas: 4.2, status: 'active' },
-  { name: 'Shopping – Core Products',  impressions: 156000, clicks: 7800,  ctr: 5.00, cpc: 1.31, spend: 10218, conv: 592,  roas: 7.1, status: 'active' },
-  { name: 'YouTube – Awareness',       impressions: 94000,  clicks: 3302,  ctr: 3.51, cpc: 2.45, spend: 8100,  conv: 204,  roas: 3.0, status: 'paused' },
+  { name: 'Brand â€“ Branded Keywords', impressions: 312000, clicks: 14200, ctr: 4.55, cpc: 0.88, spend: 12496, conv: 1104, roas: 8.4, status: 'active' },
+  { name: 'Search â€“ Competitor Terms', impressions: 198000, clicks: 7900,  ctr: 3.99, cpc: 1.62, spend: 12798, conv: 543,  roas: 5.9, status: 'active' },
+  { name: 'Display â€“ Remarketing',     impressions: 480000, clicks: 5200,  ctr: 1.08, cpc: 2.10, spend: 10920, conv: 371,  roas: 4.2, status: 'active' },
+  { name: 'Shopping â€“ Core Products',  impressions: 156000, clicks: 7800,  ctr: 5.00, cpc: 1.31, spend: 10218, conv: 592,  roas: 7.1, status: 'active' },
+  { name: 'YouTube â€“ Awareness',       impressions: 94000,  clicks: 3302,  ctr: 3.51, cpc: 2.45, spend: 8100,  conv: 204,  roas: 3.0, status: 'paused' },
 ];
 
 const adGroups = [
@@ -38,7 +38,7 @@ const adGroups = [
   { name: 'HR Productivity',      clicks: 4100, ctr: 2.4, conv: 320, cpc: 2.10 },
 ];
 
-// ─── Components ───────────────────────────────────────────────────────────────
+// â”€â”€â”€ Components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const icons = {
   eye:     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
   cursor:  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg>,
@@ -56,11 +56,11 @@ function KPICard({ kpi, i }) {
     <div className="card p-5 flex flex-col gap-4 animate-fade-in-up" style={{ animationDelay: `${i * 50}ms` }}>
       <div className="flex items-center justify-between">
         <div className="w-9 h-9 rounded-md flex items-center justify-center"
-          style={{ background: kpi.isKey ? 'var(--accent-red)' : 'rgba(255,255,255,0.03)', border: kpi.isKey ? 'none' : '1px solid var(--border)', color: kpi.isKey ? '#fff' : 'var(--text-secondary)' }}>
+          style={{ background: kpi.isKey ? 'var(--accent-gold)' : 'rgba(255,255,255,0.03)', border: kpi.isKey ? 'none' : '1px solid var(--border)', color: kpi.isKey ? '#fff' : 'var(--text-secondary)' }}>
           {icons[kpi.icon]}
         </div>
         <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded ${up ? 'badge-up' : 'badge-down'}`}>
-          {up ? '↑' : '↓'} {Math.abs(kpi.change)}%
+          {up ? 'â†‘' : 'â†“'} {Math.abs(kpi.change)}%
         </span>
       </div>
       <div>
@@ -97,12 +97,12 @@ export default function GoogleAdsPage() {
             <div className="w-6 h-6 rounded flex items-center justify-center" style={{ background: '#4285F4' }}>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
             </div>
-            <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>Google Ads · Last 7 days</span>
+            <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>Google Ads Â· Last 7 days</span>
           </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Campaign performance across all active ad groups</p>
         </div>
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
-          Apr 7 – Apr 14, 2026
+          Apr 7 â€“ Apr 14, 2026
         </div>
       </div>
 
@@ -128,7 +128,7 @@ export default function GoogleAdsPage() {
                 <YAxis tickLine={false} axisLine={false} />
                 <Tooltip content={<SpendTooltip />} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
                 <Bar dataKey="spend" name="Spend" radius={[4, 4, 0, 0]} maxBarSize={36}>
-                  {weeklySpend.map((_, i) => <Cell key={i} fill={i === 6 ? 'var(--accent-red)' : 'rgba(255,255,255,0.12)'} />)}
+                  {weeklySpend.map((_, i) => <Cell key={i} fill={i === 6 ? 'var(--accent-gold)' : 'rgba(255,255,255,0.12)'} />)}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
@@ -138,7 +138,7 @@ export default function GoogleAdsPage() {
         {/* Top Ad Groups */}
         <div className="card p-5 animate-fade-in-up" style={{ animationDelay: '440ms' }}>
           <h3 className="text-sm font-semibold text-white mb-1">Top Ad Groups</h3>
-          <p className="text-xs mb-4" style={{ color: 'var(--text-secondary)' }}>By clicks · this week</p>
+          <p className="text-xs mb-4" style={{ color: 'var(--text-secondary)' }}>By clicks Â· this week</p>
           <div className="space-y-3">
             {adGroups.map((g, i) => {
               const maxClicks = adGroups[0].clicks;
@@ -150,7 +150,7 @@ export default function GoogleAdsPage() {
                     <span className="text-xs font-bold font-mono text-white ml-2 flex-shrink-0">{g.clicks.toLocaleString()}</span>
                   </div>
                   <div className="w-full rounded-sm h-[3px]" style={{ background: 'rgba(255,255,255,0.05)' }}>
-                    <div className="h-full rounded-sm" style={{ width: `${w}%`, background: i === 0 ? 'var(--accent-red)' : 'rgba(255,255,255,0.18)' }} />
+                    <div className="h-full rounded-sm" style={{ width: `${w}%`, background: i === 0 ? 'var(--accent-gold)' : 'rgba(255,255,255,0.18)' }} />
                   </div>
                 </div>
               );
@@ -164,7 +164,7 @@ export default function GoogleAdsPage() {
         <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
           <div>
             <h3 className="text-sm font-semibold text-white">Campaigns</h3>
-            <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{campaigns.length} campaigns · sorted by spend</p>
+            <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{campaigns.length} campaigns Â· sorted by spend</p>
           </div>
         </div>
         {/* Column headers */}
@@ -175,7 +175,7 @@ export default function GoogleAdsPage() {
           <div key={c.name} className="grid px-5 items-center transition-colors" onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
             style={{ gridTemplateColumns: '1fr 100px 80px 70px 80px 90px 80px 70px', padding: '13px 20px', borderBottom: i < campaigns.length - 1 ? '1px solid var(--border)' : 'none' }}>
             <div className="flex items-center gap-2 min-w-0">
-              <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${c.status === 'active' ? '' : 'opacity-30'}`} style={{ background: c.status === 'active' ? 'var(--accent-red)' : 'var(--text-muted)' }} />
+              <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${c.status === 'active' ? '' : 'opacity-30'}`} style={{ background: c.status === 'active' ? 'var(--accent-gold)' : 'var(--text-muted)' }} />
               <span className="text-xs font-semibold text-white truncate">{c.name}</span>
             </div>
             <div className="text-right text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>{c.impressions.toLocaleString()}</div>
@@ -184,7 +184,7 @@ export default function GoogleAdsPage() {
             <div className="text-right text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>${c.cpc}</div>
             <div className="text-right text-xs font-bold font-mono text-white">${c.spend.toLocaleString()}</div>
             <div className="text-right text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>{c.conv}</div>
-            <div className="text-right text-xs font-bold font-mono" style={{ color: c.roas >= 6 ? 'var(--accent-red)' : 'var(--text-secondary)' }}>{c.roas}x</div>
+            <div className="text-right text-xs font-bold font-mono" style={{ color: c.roas >= 6 ? 'var(--accent-gold)' : 'var(--text-secondary)' }}>{c.roas}x</div>
           </div>
         ))}
       </div>

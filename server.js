@@ -9,10 +9,16 @@ app.use(express.json());
 
 const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID || "527258730";
 
+const IS_PROD = process.env.NODE_ENV === "production" || process.env.VERCEL;
+
+const REDIRECT_URI = IS_PROD 
+    ? "https://space-iq-iota.vercel.app/auth/callback" 
+    : "http://localhost:3001/auth/callback";
+
 const OAuth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
-    process.env.REDIRECT_URI || "http://localhost:3001/auth/callback"
+    REDIRECT_URI
 );
 
 const SCOPES = [
@@ -35,15 +41,7 @@ app.get("/auth/callback", async (req, res) => {
         const { tokens } = await OAuth2Client.getToken(code);
         OAuth2Client.setCredentials(tokens);
         global.savedTokens = tokens;
-        res.send(`
-            <h2 style="font-family:sans-serif;color:green">✅ Auth Successful!</h2>
-            <ul style="font-family:sans-serif;line-height:2.5">
-                <li><a href="/api/realtime/all">/api/realtime/all</a></li>
-                <li><a href="/api/overview">/api/overview — 7 day stats</a></li>
-                <li><a href="/api/realtime/countries">/api/realtime/countries</a></li>
-                <li><a href="/api/dashboard">/api/dashboard — EVERYTHING</a></li>
-            </ul>
-        `);
+        res.redirect(IS_PROD ? "https://space-iq-iota.vercel.app" : "http://localhost:5173");
     } catch (err) {
         res.status(500).send(`Auth failed: ${err.message}`);
     }

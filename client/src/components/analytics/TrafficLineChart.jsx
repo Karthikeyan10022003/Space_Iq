@@ -13,7 +13,7 @@ function CustomTooltip({ active, payload, label }) {
     >
       <p className="font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>{label}</p>
       <div className="flex items-center gap-2">
-        <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'var(--accent-red)' }} />
+        <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'var(--accent-gold)' }} />
         <span className="text-white font-bold">{payload[0].value}</span>
         <span style={{ color: 'var(--text-secondary)' }}>active users</span>
       </div>
@@ -32,7 +32,7 @@ export default function TrafficLineChart({ data }) {
       {/* Header */}
       <div className="flex items-center justify-between mb-5">
         <div>
-          <h2 className="text-sm font-semibold text-white">Traffic — Last 30 Minutes</h2>
+          <h2 className="text-sm font-semibold text-white">Traffic â€” Last 30 Minutes</h2>
           <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>Active users per minute</p>
         </div>
         <div className="flex items-center gap-4 text-xs" style={{ color: 'var(--text-secondary)' }}>
@@ -42,7 +42,7 @@ export default function TrafficLineChart({ data }) {
           </div>
           {maxVal > 0 && (
             <div className="flex items-center gap-1.5 font-medium ml-2">
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent-red)' }} />
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent-gold)' }} />
               <span style={{ color: 'var(--text-primary)' }}>Peak {maxVal}</span>
             </div>
           )}
@@ -63,7 +63,7 @@ export default function TrafficLineChart({ data }) {
             <YAxis tickLine={false} axisLine={false} allowDecimals={false} />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'transparent', stroke: 'rgba(255,255,255,0.1)', strokeWidth: 1, strokeDasharray: '4 4' }} />
             {peakItem && (
-              <ReferenceLine x={peakItem.label} stroke="var(--accent-red)" strokeDasharray="3 3" />
+              <ReferenceLine x={peakItem.label} stroke="var(--accent-gold)" strokeDasharray="3 3" />
             )}
             <Area
               type="monotone"
@@ -72,7 +72,7 @@ export default function TrafficLineChart({ data }) {
               strokeWidth={2}
               fill="url(#trafficGrad)"
               dot={false}
-              activeDot={{ r: 4, fill: 'var(--accent-red)', stroke: 'var(--bg-base)', strokeWidth: 2 }}
+              activeDot={{ r: 4, fill: 'var(--accent-gold)', stroke: 'var(--bg-base)', strokeWidth: 2 }}
             />
           </AreaChart>
         </ResponsiveContainer>

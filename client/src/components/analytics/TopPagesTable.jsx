@@ -26,7 +26,7 @@ function PageRow({ page, index, maxUsers }) {
         {isTop ? (
           <span
             className="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold flex-shrink-0"
-            style={{ background: 'var(--accent-red)', color: '#fff' }}
+            style={{ background: 'var(--accent-gold)', color: '#fff' }}
           >1</span>
         ) : (
           <span className="text-[11px] font-mono" style={{ color: 'var(--text-secondary)' }}>{index + 1}</span>
@@ -50,7 +50,7 @@ function PageRow({ page, index, maxUsers }) {
             className="h-full rounded-sm transition-all"
             style={{
               width: `${barWidth}%`,
-              background: isTop ? 'var(--accent-red)' : 'rgba(255,255,255,0.15)',
+              background: isTop ? 'var(--accent-gold)' : 'rgba(255,255,255,0.15)',
             }}
           />
         </div>
@@ -69,7 +69,7 @@ function PageRow({ page, index, maxUsers }) {
       <div className="text-right">
         <span
           className="text-[11px] font-bold font-mono"
-          style={{ color: bounceHigh ? 'var(--accent-red)' : 'var(--text-secondary)' }}
+          style={{ color: bounceHigh ? 'var(--accent-gold)' : 'var(--text-secondary)' }}
         >
           {page.bounce}%
         </span>
@@ -98,7 +98,7 @@ export default function TopPagesTable({ pages }) {
       >
         <div>
           <h2 className="text-sm font-semibold text-white">Top Pages</h2>
-          <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{sorted.length} pages · sorted by active users</p>
+          <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{sorted.length} pages Â· sorted by active users</p>
         </div>
         <div
           className="flex items-center gap-1.5 rounded px-2.5 py-1 text-[11px] font-semibold tracking-wider"

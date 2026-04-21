@@ -4,14 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        base:    '#0B0F14',
-        card:    '#111827',
-        sidebar: '#0B0F14',
-        border:  'rgba(255,255,255,0.08)',
+        base:    '#000000', // Primary Black
+        card:    '#111111', // Elevated Black
+        sidebar: '#000000', // Primary Black
+        border:  '#434343', // Secondary Black
         accent: {
-          red:    '#E11D48',
-          light:  '#F43F5E',
-          muted:  'rgba(225,29,72,0.15)',
+          gold:   '#f6d8a0', // Signature Gold Light
+          dark:   '#dab776', // Signature Gold Dark
+          muted:  'rgba(218,183,118,0.15)', // Muted Gold
         },
       },
       fontFamily: {

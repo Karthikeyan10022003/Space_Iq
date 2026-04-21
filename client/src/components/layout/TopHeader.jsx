@@ -34,21 +34,21 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
       <div className="flex-1 flex items-center gap-3 min-w-0">
         <h1 className="text-base font-semibold text-white truncate">{pageTitles[activePage] ?? 'Dashboard'}</h1>
 
-        {/* ── Live indicator (analytics only) ──────────────────────────────── */}
+        {/* â”€â”€ Live indicator (analytics only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {activePage === 'analytics' && (
           <div className="flex items-center gap-2 ml-2">
-            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'var(--accent-red)' }} />
+            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'var(--accent-gold)' }} />
             <span className="text-xs font-semibold tracking-widest" style={{ color: 'var(--text-primary)' }}>LIVE</span>
             {lastUpdated && (
               <span className="text-xs ml-1" style={{ color: 'var(--text-secondary)' }}>
-                · Updated {formatTime(lastUpdated)}
+                Â· Updated {formatTime(lastUpdated)}
               </span>
             )}
           </div>
         )}
       </div>
 
-      {/* ── Search bar ───────────────────────────────────────────────────── */}
+      {/* â”€â”€ Search bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div
         className="hidden sm:flex items-center gap-2.5 rounded-md px-3 py-2"
         style={{
@@ -64,13 +64,13 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
         <span style={{ color: 'var(--text-secondary)' }}><SearchIcon /></span>
         <input
           type="text"
-          placeholder="Search…"
+          placeholder="Searchâ€¦"
           className="bg-transparent outline-none text-xs w-full"
           style={{ color: 'var(--text-primary)' }}
         />
       </div>
 
-      {/* ── Refresh button (analytics only) ──────────────────────────────── */}
+      {/* â”€â”€ Refresh button (analytics only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {activePage === 'analytics' && (
         <button
           onClick={onRefresh}
@@ -82,11 +82,11 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
           title="Refresh data"
         >
           <RefreshIcon spinning={refreshing} />
-          <span className="hidden sm:block">{refreshing ? 'Refreshing…' : 'Refresh'}</span>
+          <span className="hidden sm:block">{refreshing ? 'Refreshingâ€¦' : 'Refresh'}</span>
         </button>
       )}
 
-      {/* ── Notifications ─────────────────────────────────────────────────── */}
+      {/* â”€â”€ Notifications â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="relative">
         <button
           onClick={() => { setShowNotif(p => !p); setShowProfile(false); }}
@@ -97,7 +97,7 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
         >
           <BellIcon />
           {/* Red dot */}
-          <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent-red)' }} />
+          <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent-gold)' }} />
         </button>
 
         {showNotif && (
@@ -131,7 +131,7 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
         )}
       </div>
 
-      {/* ── Profile ────────────────────────────────────────────────────────── */}
+      {/* â”€â”€ Profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="relative">
         <button
           onClick={() => { setShowProfile(p => !p); setShowNotif(false); }}
@@ -159,7 +159,7 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
               <button
                 key={i}
                 className="w-full text-left px-4 py-2.5 text-xs transition-colors"
-                style={{ color: i === 2 ? 'var(--accent-red)' : 'var(--text-primary)', borderBottom: i < 2 ? '1px solid var(--border)' : 'none' }}
+                style={{ color: i === 2 ? 'var(--accent-gold)' : 'var(--text-primary)', borderBottom: i < 2 ? '1px solid var(--border)' : 'none' }}
                 onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.04)'}
                 onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
               >

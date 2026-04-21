@@ -1,6 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie } from 'recharts';
 
-// ─── Mock Data ────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Mock Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const kpis = [
   { label: 'Reach',        value: '892K',    change: +21.4, isKey: false },
   { label: 'Impressions',  value: '2.41M',   change: +18.2, isKey: false },
@@ -31,7 +31,7 @@ const ageData = [
 ];
 
 const placementData = [
-  { name: 'Facebook Feed',   value: 46, color: 'var(--accent-red)' },
+  { name: 'Facebook Feed',   value: 46, color: 'var(--accent-gold)' },
   { name: 'Instagram Feed',  value: 28, color: 'rgba(255,255,255,0.15)' },
   { name: 'Stories',         value: 14, color: 'rgba(255,255,255,0.08)' },
   { name: 'Reels',           value: 8,  color: 'rgba(255,255,255,0.05)' },
@@ -39,14 +39,14 @@ const placementData = [
 ];
 
 const campaigns = [
-  { name: 'Workspace Awareness – Broad',    reach: 312000, clicks: 18400, ctr: 2.9, spend: 7200, conv: 1040, cpa: 6.9, status: 'active' },
-  { name: 'Retargeting – Website Visitors', reach: 84000,  clicks: 12800, ctr: 5.8, spend: 5100, conv: 892,  cpa: 5.7, status: 'active' },
-  { name: 'Lookalike – Top Customers',      reach: 241000, clicks: 14200, ctr: 3.4, spend: 4974, conv: 728,  cpa: 6.8, status: 'active' },
-  { name: 'Lead Gen – HR Managers',         reach: 148000, clicks: 9100,  ctr: 3.1, spend: 3100, conv: 412,  cpa: 7.5, status: 'active' },
-  { name: 'Engagement – Page Post Ads',     reach: 107000, clicks: 6840,  ctr: 2.0, spend: 1100, conv: 110,  cpa: 10.0, status: 'paused' },
+  { name: 'Workspace Awareness â€“ Broad',    reach: 312000, clicks: 18400, ctr: 2.9, spend: 7200, conv: 1040, cpa: 6.9, status: 'active' },
+  { name: 'Retargeting â€“ Website Visitors', reach: 84000,  clicks: 12800, ctr: 5.8, spend: 5100, conv: 892,  cpa: 5.7, status: 'active' },
+  { name: 'Lookalike â€“ Top Customers',      reach: 241000, clicks: 14200, ctr: 3.4, spend: 4974, conv: 728,  cpa: 6.8, status: 'active' },
+  { name: 'Lead Gen â€“ HR Managers',         reach: 148000, clicks: 9100,  ctr: 3.1, spend: 3100, conv: 412,  cpa: 7.5, status: 'active' },
+  { name: 'Engagement â€“ Page Post Ads',     reach: 107000, clicks: 6840,  ctr: 2.0, spend: 1100, conv: 110,  cpa: 10.0, status: 'paused' },
 ];
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
+// â”€â”€â”€ Sub-components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const kpiIcons = ['reach', 'imp', 'click', 'ctr', 'cpm', 'spend', 'conv', 'cpa'];
 const iconSVGs = {
   reach: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
@@ -79,12 +79,12 @@ export default function FacebookAdsPage() {
             <div className="w-6 h-6 rounded flex items-center justify-center" style={{ background: '#1877F2' }}>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </div>
-            <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>Meta Ads Manager · Last 7 days</span>
+            <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>Meta Ads Manager Â· Last 7 days</span>
           </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Performance across Facebook &amp; Instagram placements</p>
         </div>
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
-          Apr 7 – Apr 14, 2026
+          Apr 7 â€“ Apr 14, 2026
         </div>
       </div>
 
@@ -95,10 +95,10 @@ export default function FacebookAdsPage() {
           return (
             <div key={k.label} className="card p-5 flex flex-col gap-4 animate-fade-in-up" style={{ animationDelay: `${i * 50}ms` }}>
               <div className="flex items-center justify-between">
-                <div className="w-9 h-9 rounded-md flex items-center justify-center" style={{ background: k.isKey ? 'var(--accent-red)' : 'rgba(255,255,255,0.03)', border: k.isKey ? 'none' : '1px solid var(--border)', color: k.isKey ? '#fff' : 'var(--text-secondary)' }}>
+                <div className="w-9 h-9 rounded-md flex items-center justify-center" style={{ background: k.isKey ? 'var(--accent-gold)' : 'rgba(255,255,255,0.03)', border: k.isKey ? 'none' : '1px solid var(--border)', color: k.isKey ? '#fff' : 'var(--text-secondary)' }}>
                   {iconSVGs[kpiIcons[i]]}
                 </div>
-                <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded ${up ? 'badge-up' : 'badge-down'}`}>{up ? '↑' : '↓'} {Math.abs(k.change)}%</span>
+                <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded ${up ? 'badge-up' : 'badge-down'}`}>{up ? 'â†‘' : 'â†“'} {Math.abs(k.change)}%</span>
               </div>
               <div>
                 <div className="text-2xl font-bold text-white tracking-tight" style={{ fontVariantNumeric: 'tabular-nums' }}>{k.value}</div>
@@ -122,7 +122,7 @@ export default function FacebookAdsPage() {
                 <YAxis tickLine={false} axisLine={false} />
                 <Tooltip content={<ChartTip />} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
                 <Bar dataKey="reach" name="Reach" radius={[4, 4, 0, 0]} maxBarSize={36}>
-                  {dailyData.map((_, i) => <Cell key={i} fill={i === 4 ? 'var(--accent-red)' : 'rgba(255,255,255,0.1)'} />)}
+                  {dailyData.map((_, i) => <Cell key={i} fill={i === 4 ? 'var(--accent-gold)' : 'rgba(255,255,255,0.1)'} />)}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
@@ -154,7 +154,7 @@ export default function FacebookAdsPage() {
                 <div key={a.age} className="flex items-center gap-3">
                   <span className="text-[11px] font-mono w-12 flex-shrink-0" style={{ color: 'var(--text-secondary)' }}>{a.age}</span>
                   <div className="flex-1 rounded-sm h-[3px]" style={{ background: 'rgba(255,255,255,0.03)' }}>
-                    <div className="h-full rounded-sm" style={{ width: `${a.pct * 2.2}%`, background: i === 1 ? 'var(--accent-red)' : 'rgba(255,255,255,0.12)' }} />
+                    <div className="h-full rounded-sm" style={{ width: `${a.pct * 2.2}%`, background: i === 1 ? 'var(--accent-gold)' : 'rgba(255,255,255,0.12)' }} />
                   </div>
                   <span className="text-[11px] font-bold font-mono text-white w-8 text-right">{a.pct}%</span>
                 </div>
@@ -169,7 +169,7 @@ export default function FacebookAdsPage() {
         <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
           <div>
             <h3 className="text-sm font-semibold text-white">Ad Sets</h3>
-            <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{campaigns.length} campaigns · sorted by spend</p>
+            <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{campaigns.length} campaigns Â· sorted by spend</p>
           </div>
         </div>
         <div className="grid px-5 py-2 text-[11px] font-semibold uppercase tracking-wider" style={{ gridTemplateColumns: '1fr 90px 80px 60px 80px 80px 60px', color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}>
@@ -181,7 +181,7 @@ export default function FacebookAdsPage() {
             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
             style={{ gridTemplateColumns: '1fr 90px 80px 60px 80px 80px 60px', padding: '13px 20px', borderBottom: i < campaigns.length - 1 ? '1px solid var(--border)' : 'none' }}>
             <div className="flex items-center gap-2 min-w-0">
-              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: c.status === 'active' ? 'var(--accent-red)' : 'var(--text-muted)', opacity: c.status === 'active' ? 1 : 0.4 }} />
+              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: c.status === 'active' ? 'var(--accent-gold)' : 'var(--text-muted)', opacity: c.status === 'active' ? 1 : 0.4 }} />
               <span className="text-xs font-semibold text-white truncate">{c.name}</span>
             </div>
             <div className="text-right text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>{c.reach.toLocaleString()}</div>
@@ -189,7 +189,7 @@ export default function FacebookAdsPage() {
             <div className="text-right text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>{c.ctr}%</div>
             <div className="text-right text-xs font-bold font-mono text-white">${c.spend.toLocaleString()}</div>
             <div className="text-right text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>{c.conv}</div>
-            <div className="text-right text-xs font-bold font-mono" style={{ color: c.cpa < 7 ? 'var(--accent-red)' : 'var(--text-secondary)' }}>${c.cpa}</div>
+            <div className="text-right text-xs font-bold font-mono" style={{ color: c.cpa < 7 ? 'var(--accent-gold)' : 'var(--text-secondary)' }}>${c.cpa}</div>
           </div>
         ))}
       </div>

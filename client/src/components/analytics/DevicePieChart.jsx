@@ -20,7 +20,7 @@ export default function DevicePieChart({ devices }) {
   const data = (devices || []).map(d => ({
     name: d.device,
     value: d.sessions,
-    color: d.sessions === maxSessions && maxSessions > 0 ? 'var(--accent-red)' : 'rgba(255,255,255,0.1)',
+    color: d.sessions === maxSessions && maxSessions > 0 ? 'var(--accent-gold)' : 'rgba(255,255,255,0.1)',
   }));
 
   const total = data.reduce((s, d) => s + d.value, 0);
@@ -30,7 +30,7 @@ export default function DevicePieChart({ devices }) {
       {/* Header */}
       <div className="mb-4">
         <h2 className="text-sm font-semibold text-white">Device Breakdown</h2>
-        <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>Sessions by device · last 7 days</p>
+        <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>Sessions by device Â· last 7 days</p>
       </div>
 
       {/* Pie chart */}

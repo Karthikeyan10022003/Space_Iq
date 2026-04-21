@@ -23,7 +23,7 @@ export default function TrafficSourcesChart({ sources }) {
     return {
       source: s.channel,
       users: val,
-      color: val === maxUsers ? 'var(--accent-red)' : 'rgba(255,255,255,0.1)',
+      color: val === maxUsers ? 'var(--accent-gold)' : 'rgba(255,255,255,0.1)',
     };
   });
   const total = data.reduce((s, d) => s + d.users, 0);
@@ -34,7 +34,7 @@ export default function TrafficSourcesChart({ sources }) {
       <div className="flex items-center justify-between mb-5">
         <div>
           <h2 className="text-sm font-semibold text-white">Traffic Sources</h2>
-          <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>By channel · last 7 days</p>
+          <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>By channel Â· last 7 days</p>
         </div>
       </div>
 

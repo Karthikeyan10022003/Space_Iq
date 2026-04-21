@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-const API_URL = '/api/dashboard';
+const BACKEND_URL = import.meta.env.PROD ? 'https://space-iq-iota.vercel.app' : '';
+const API_URL = `${BACKEND_URL}/api/dashboard`;
 const POLL_INTERVAL = 30_000;
 
 export default function useRealtimeData() {

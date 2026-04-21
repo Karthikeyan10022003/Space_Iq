@@ -1,6 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
-// ─── Mock Data ────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Mock Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const kpis = [
   { label: 'Impressions',    value: '486K',    change: +31.2, isKey: false },
   { label: 'Members Reached',value: '94,200',  change: +22.8, isKey: false },
@@ -40,11 +40,11 @@ const seniority = [
 ];
 
 const campaigns = [
-  { name: 'Thought Leadership – CXOs',        impressions: 98200,  clicks: 2800, ctr: 2.85, spend: 16200, leads: 210, cpl: 77.1, status: 'active' },
-  { name: 'Lead Gen – HR Software Buyers',    impressions: 114000, clicks: 3400, ctr: 2.98, spend: 15800, leads: 198, cpl: 79.8, status: 'active' },
-  { name: 'Retargeting – Website Visitors',   impressions: 61000,  clicks: 2800, ctr: 4.59, spend: 12100, leads: 201, cpl: 60.2, status: 'active' },
-  { name: 'Sponsored Content – Case Studies', impressions: 142000, clicks: 2440, ctr: 1.72, spend: 11187, leads: 152, cpl: 73.6, status: 'active' },
-  { name: 'InMail – Director to C-Suite',     impressions: 71000,  clicks: 1400, ctr: 1.97, spend: 6600,  leads: 80,  cpl: 82.5, status: 'paused' },
+  { name: 'Thought Leadership â€“ CXOs',        impressions: 98200,  clicks: 2800, ctr: 2.85, spend: 16200, leads: 210, cpl: 77.1, status: 'active' },
+  { name: 'Lead Gen â€“ HR Software Buyers',    impressions: 114000, clicks: 3400, ctr: 2.98, spend: 15800, leads: 198, cpl: 79.8, status: 'active' },
+  { name: 'Retargeting â€“ Website Visitors',   impressions: 61000,  clicks: 2800, ctr: 4.59, spend: 12100, leads: 201, cpl: 60.2, status: 'active' },
+  { name: 'Sponsored Content â€“ Case Studies', impressions: 142000, clicks: 2440, ctr: 1.72, spend: 11187, leads: 152, cpl: 73.6, status: 'active' },
+  { name: 'InMail â€“ Director to C-Suite',     impressions: 71000,  clicks: 1400, ctr: 1.97, spend: 6600,  leads: 80,  cpl: 82.5, status: 'paused' },
 ];
 
 function ChartTip({ active, payload, label }) {
@@ -76,12 +76,12 @@ export default function LinkedInPage() {
                 <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
               </svg>
             </div>
-            <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>LinkedIn Campaign Manager · Last 7 days</span>
+            <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>LinkedIn Campaign Manager Â· Last 7 days</span>
           </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>B2B lead generation performance across all ad formats</p>
         </div>
         <div className="px-3 py-1.5 rounded-md text-xs font-medium" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
-          Apr 7 – Apr 14, 2026
+          Apr 7 â€“ Apr 14, 2026
         </div>
       </div>
 
@@ -102,10 +102,10 @@ export default function LinkedInPage() {
           return (
             <div key={k.label} className="card p-5 flex flex-col gap-4 animate-fade-in-up" style={{ animationDelay: `${i * 50}ms` }}>
               <div className="flex items-center justify-between">
-                <div className="w-9 h-9 rounded-md flex items-center justify-center" style={{ background: k.isKey ? 'var(--accent-red)' : 'rgba(255,255,255,0.03)', border: k.isKey ? 'none' : '1px solid var(--border)', color: k.isKey ? '#fff' : 'var(--text-secondary)' }}>
+                <div className="w-9 h-9 rounded-md flex items-center justify-center" style={{ background: k.isKey ? 'var(--accent-gold)' : 'rgba(255,255,255,0.03)', border: k.isKey ? 'none' : '1px solid var(--border)', color: k.isKey ? '#fff' : 'var(--text-secondary)' }}>
                   {kpiIcons[i]}
                 </div>
-                <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded ${up ? 'badge-up' : 'badge-down'}`}>{up ? '↑' : '↓'} {Math.abs(k.change)}%</span>
+                <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded ${up ? 'badge-up' : 'badge-down'}`}>{up ? 'â†‘' : 'â†“'} {Math.abs(k.change)}%</span>
               </div>
               <div>
                 <div className="text-2xl font-bold text-white tracking-tight" style={{ fontVariantNumeric: 'tabular-nums' }}>{k.value}</div>
@@ -129,7 +129,7 @@ export default function LinkedInPage() {
                 <YAxis tickLine={false} axisLine={false} />
                 <Tooltip content={<ChartTip />} cursor={{ fill: 'rgba(255,255,255,0.02)' }} />
                 <Bar dataKey="impressions" name="Impressions" radius={[4, 4, 0, 0]} maxBarSize={36}>
-                  {weeklyData.map((_, i) => <Cell key={i} fill={i === 4 ? 'var(--accent-red)' : 'rgba(255,255,255,0.1)'} />)}
+                  {weeklyData.map((_, i) => <Cell key={i} fill={i === 4 ? 'var(--accent-gold)' : 'rgba(255,255,255,0.1)'} />)}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
@@ -148,7 +148,7 @@ export default function LinkedInPage() {
                   <span className="text-xs font-bold font-mono text-white">{j.value}%</span>
                 </div>
                 <div className="w-full rounded-sm h-[3px]" style={{ background: 'rgba(255,255,255,0.03)' }}>
-                  <div className="h-full rounded-sm" style={{ width: `${j.value * 2.8}%`, background: i === 0 ? 'var(--accent-red)' : 'rgba(255,255,255,0.15)' }} />
+                  <div className="h-full rounded-sm" style={{ width: `${j.value * 2.8}%`, background: i === 0 ? 'var(--accent-gold)' : 'rgba(255,255,255,0.15)' }} />
                 </div>
               </div>
             ))}
@@ -161,7 +161,7 @@ export default function LinkedInPage() {
                 <div key={s.level} className="flex items-center gap-3">
                   <span className="text-[11px] font-mono w-16 flex-shrink-0" style={{ color: 'var(--text-secondary)' }}>{s.level}</span>
                   <div className="flex-1 rounded-sm h-[3px]" style={{ background: 'rgba(255,255,255,0.03)' }}>
-                    <div className="h-full rounded-sm" style={{ width: `${s.pct * 2.8}%`, background: i === 3 ? 'var(--accent-red)' : 'rgba(255,255,255,0.12)' }} />
+                    <div className="h-full rounded-sm" style={{ width: `${s.pct * 2.8}%`, background: i === 3 ? 'var(--accent-gold)' : 'rgba(255,255,255,0.12)' }} />
                   </div>
                   <span className="text-[11px] font-bold font-mono text-white w-8 text-right">{s.pct}%</span>
                 </div>
@@ -176,7 +176,7 @@ export default function LinkedInPage() {
         <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
           <div>
             <h3 className="text-sm font-semibold text-white">Campaigns</h3>
-            <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{campaigns.length} campaigns · sorted by spend</p>
+            <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{campaigns.length} campaigns Â· sorted by spend</p>
           </div>
         </div>
         <div className="grid px-5 py-2 text-[11px] font-semibold uppercase tracking-wider" style={{ gridTemplateColumns: '1fr 90px 80px 60px 90px 70px 70px', color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}>
@@ -188,7 +188,7 @@ export default function LinkedInPage() {
             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
             style={{ gridTemplateColumns: '1fr 90px 80px 60px 90px 70px 70px', padding: '13px 20px', borderBottom: i < campaigns.length - 1 ? '1px solid var(--border)' : 'none' }}>
             <div className="flex items-center gap-2 min-w-0">
-              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: c.status === 'active' ? 'var(--accent-red)' : 'var(--text-muted)', opacity: c.status === 'active' ? 1 : 0.4 }} />
+              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: c.status === 'active' ? 'var(--accent-gold)' : 'var(--text-muted)', opacity: c.status === 'active' ? 1 : 0.4 }} />
               <span className="text-xs font-semibold text-white truncate">{c.name}</span>
             </div>
             <div className="text-right text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>{c.impressions.toLocaleString()}</div>
@@ -196,7 +196,7 @@ export default function LinkedInPage() {
             <div className="text-right text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>{c.ctr}%</div>
             <div className="text-right text-xs font-bold font-mono text-white">${c.spend.toLocaleString()}</div>
             <div className="text-right text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>{c.leads}</div>
-            <div className="text-right text-xs font-bold font-mono" style={{ color: c.cpl < 70 ? 'var(--accent-red)' : 'var(--text-secondary)' }}>${c.cpl}</div>
+            <div className="text-right text-xs font-bold font-mono" style={{ color: c.cpl < 70 ? 'var(--accent-gold)' : 'var(--text-secondary)' }}>${c.cpl}</div>
           </div>
         ))}
       </div>

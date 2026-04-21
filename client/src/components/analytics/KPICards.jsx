@@ -5,7 +5,7 @@ function TrendBadge({ value, suffix = '%' }) {
     <span
       className={`inline-flex items-center gap-0.5 text-[11px] font-semibold px-1.5 py-0.5 rounded flex-shrink-0 ${up ? 'badge-up' : 'badge-down'}`}
     >
-      {up ? '↑' : '↓'} {Math.abs(value)}{suffix}
+      {up ? 'â†‘' : 'â†“'} {Math.abs(value)}{suffix}
     </span>
   );
 }
@@ -21,7 +21,7 @@ function MetricCard({ title, value, sub, icon, isKeyMetric, trend, delay = 0 }) 
         <div
           className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0 transition-colors"
           style={{
-            background: isKeyMetric ? 'var(--accent-red)' : 'rgba(255,255,255,0.03)',
+            background: isKeyMetric ? 'var(--accent-gold)' : 'rgba(255,255,255,0.03)',
             border: isKeyMetric ? 'none' : '1px solid var(--border)',
             color: isKeyMetric ? '#fff' : 'var(--text-secondary)',
           }}
@@ -37,7 +37,7 @@ function MetricCard({ title, value, sub, icon, isKeyMetric, trend, delay = 0 }) 
           className="text-3xl font-bold text-white tracking-tight leading-none mb-1.5"
           style={{ fontVariantNumeric: 'tabular-nums' }}
         >
-          {value ?? '—'}
+          {value ?? 'â€”'}
         </div>
         <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
           {title}
@@ -60,7 +60,7 @@ export default function KPICards({ data }) {
     : 0;
 
   const cards = [
-    // ── 7-Day Overview (0–4)
+    // â”€â”€ 7-Day Overview (0â€“4)
     {
       title: 'Weekly Active Users',
       value: (overview.activeUsers ?? 0).toLocaleString(),
@@ -115,7 +115,7 @@ export default function KPICards({ data }) {
         </svg>
       ),
     },
-    // ── Realtime (5–7)
+    // â”€â”€ Realtime (5â€“7)
     {
       title: 'Active Users',
       value: (realtime.activeUsersLast30Min ?? 0).toLocaleString(),

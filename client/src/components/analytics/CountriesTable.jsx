@@ -11,7 +11,7 @@ export default function CountriesTable({ countries }) {
       >
         <div>
           <h2 className="text-sm font-semibold text-white">Active Countries</h2>
-          <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{sorted.length} countries · realtime</p>
+          <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{sorted.length} countries Â· realtime</p>
         </div>
       </div>
 
@@ -48,7 +48,7 @@ export default function CountriesTable({ countries }) {
                         className="h-full rounded-sm transition-all"
                         style={{
                           width: `${barWidth}%`,
-                          background: isTop ? 'var(--accent-red)' : 'rgba(255,255,255,0.15)',
+                          background: isTop ? 'var(--accent-gold)' : 'rgba(255,255,255,0.15)',
                         }}
                       />
                     </div>

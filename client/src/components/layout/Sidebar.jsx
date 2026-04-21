@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-// ─── Icon components ──────────────────────────────────────────────────────────
+// â”€â”€â”€ Icon components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const ChevronIcon = ({ right }) => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     {right ? <polyline points="9 18 15 12 9 6" /> : <polyline points="15 18 9 12 15 6" />}
@@ -57,7 +57,7 @@ function NavItem({ item, active, onClick, collapsed }) {
       style={{ justifyContent: collapsed ? 'center' : 'flex-start', paddingLeft: collapsed ? 0 : undefined }}
       title={collapsed ? item.label : undefined}
     >
-      <span className="flex-shrink-0 nav-icon" style={{ color: active ? 'var(--accent-red)' : 'var(--text-secondary)' }}>
+      <span className="flex-shrink-0 nav-icon" style={{ color: active ? 'var(--accent-gold)' : 'var(--text-secondary)' }}>
         {item.icon}
       </span>
 
@@ -69,7 +69,7 @@ function NavItem({ item, active, onClick, collapsed }) {
       {!collapsed && item.badge && (
         <span
           className="text-[9px] font-bold px-1.5 py-0.5 rounded tracking-wider flex-shrink-0"
-          style={{ background: 'var(--accent-red)', color: '#fff' }}
+          style={{ background: 'var(--accent-gold)', color: '#fff' }}
         >
           {item.badge}
         </span>
@@ -96,14 +96,14 @@ export default function Sidebar({ collapsed, onToggle, activePage, onNavClick })
         {/* Hexagon logo mark */}
         <div
           className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
-          style={{ background: 'var(--accent-red)' }}
+          style={{ background: 'var(--accent-gold)' }}
         >
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/>
           </svg>
         </div>
 
-        {/* Brand name — hide when collapsed */}
+        {/* Brand name â€” hide when collapsed */}
         {!collapsed && (
           <div className="overflow-hidden">
             <div className="text-sm font-bold text-white leading-tight tracking-tight whitespace-nowrap">
