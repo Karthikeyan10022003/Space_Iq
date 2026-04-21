@@ -1,7 +1,7 @@
-require("dotenv").config();
-const express = require("express");
-const { google } = require("googleapis");
-const cors = require("cors");
+import "dotenv/config";
+import express from "express";
+import { google } from "googleapis";
+import cors from "cors";
 
 const app = express();
 app.use(cors());
