@@ -81,7 +81,7 @@ function NavItem({ item, active, onClick, collapsed }) {
 export default function Sidebar({ collapsed, onToggle, activePage, onNavClick }) {
   return (
     <aside
-      className="flex flex-col flex-shrink-0 transition-all duration-300 relative"
+      className="flex flex-col flex-shrink-0 transition-all duration-300 relative h-full"
       style={{
         width: collapsed ? 60 : 220,
         background: 'var(--bg-sidebar)',

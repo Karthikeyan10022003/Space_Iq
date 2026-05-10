@@ -16,7 +16,7 @@ function formatTime(date) {
   return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
 
-export default function TopHeader({ activePage, lastUpdated, refreshing, onRefresh, dateFilter, setDateFilter }) {
+export default function TopHeader({ activePage, lastUpdated, refreshing, onRefresh, dateFilter, setDateFilter, onOpenMobileMenu }) {
   const [showNotif, setShowNotif]     = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
@@ -30,9 +30,24 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
         WebkitBackdropFilter: 'blur(12px)',
       }}
     >
+      {/* Hamburger menu for mobile */}
+      <button 
+        className="md:hidden flex items-center justify-center w-8 h-8 rounded-lg transition-colors flex-shrink-0"
+        style={{ color: 'var(--text-secondary)' }}
+        onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+        onClick={onOpenMobileMenu}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+
       {/* Page title */}
-      <div className="flex-1 flex items-center gap-3 min-w-0">
-        <h1 className="text-base font-semibold text-white truncate">{pageTitles[activePage] ?? 'Dashboard'}</h1>
+      <div className="flex-1 flex items-center gap-2 sm:gap-3 min-w-0">
+        <h1 className="text-sm sm:text-base font-semibold text-white truncate">{pageTitles[activePage] ?? 'Dashboard'}</h1>
 
         {/* â”€â”€ Live indicator (analytics only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {activePage === 'analytics' && (
@@ -72,9 +87,9 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
 
       {/* ── Refresh button & Date Filter (analytics only) ────────────────────── */}
       {activePage === 'analytics' && (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {dateFilter?.startsWith('custom_') && (
-            <div className="flex items-center gap-1.5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '6px', padding: '2px 6px' }}>
+            <div className="hidden sm:flex items-center gap-1.5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '6px', padding: '2px 6px' }}>
                <input 
                  type="date" 
                  value={dateFilter.split('_')[1] || ''}
@@ -82,10 +97,10 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
                    const parts = dateFilter.split('_');
                    setDateFilter(`custom_${e.target.value}_${parts[2] || e.target.value}`);
                  }}
-                 className="bg-transparent outline-none text-xs text-white"
+                 className="bg-transparent outline-none text-xs text-white w-[100px] sm:w-auto"
                  style={{ colorScheme: 'dark' }}
                />
-               <span className="text-xs text-gray-500">to</span>
+               <span className="text-xs text-gray-500 hidden sm:inline">to</span>
                <input 
                  type="date" 
                  value={dateFilter.split('_')[2] || ''}
@@ -93,7 +108,7 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
                    const parts = dateFilter.split('_');
                    setDateFilter(`custom_${parts[1] || e.target.value}_${e.target.value}`);
                  }}
-                 className="bg-transparent outline-none text-xs text-white"
+                 className="bg-transparent outline-none text-xs text-white w-[100px] sm:w-auto"
                  style={{ colorScheme: 'dark' }}
                />
             </div>

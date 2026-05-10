@@ -9,6 +9,7 @@ import useRealtimeData from './hooks/useRealtimeData';
 
 export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activePage, setActivePage] = useState('analytics');
   const [dateFilter, setDateFilter] = useState('last7days');
 
@@ -16,17 +17,29 @@ export default function App() {
 
   const handleNavClick = useCallback((pageId) => {
     setActivePage(pageId);
+    setMobileMenuOpen(false);
   }, []);
 
   return (
     <div className="flex h-screen overflow-hidden" style={{ background: 'var(--bg-base)' }}>
+      {/* Mobile Overlay */}
+      {mobileMenuOpen && (
+        <div 
+          className="md:hidden fixed inset-0 z-40 backdrop-blur-sm"
+          style={{ background: 'rgba(0,0,0,0.6)' }}
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <Sidebar
-        collapsed={sidebarCollapsed}
-        onToggle={() => setSidebarCollapsed(p => !p)}
-        activePage={activePage}
-        onNavClick={handleNavClick}
-      />
+      <div className={`fixed inset-y-0 left-0 z-50 transform ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out flex`}>
+        <Sidebar
+          collapsed={sidebarCollapsed}
+          onToggle={() => setSidebarCollapsed(p => !p)}
+          activePage={activePage}
+          onNavClick={handleNavClick}
+        />
+      </div>
 
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
@@ -39,6 +52,7 @@ export default function App() {
           sidebarCollapsed={sidebarCollapsed}
           dateFilter={dateFilter}
           setDateFilter={setDateFilter}
+          onOpenMobileMenu={() => setMobileMenuOpen(true)}
         />
 
         {/* Content */}
