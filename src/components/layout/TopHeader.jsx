@@ -16,7 +16,7 @@ function formatTime(date) {
   return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
 
-export default function TopHeader({ activePage, lastUpdated, refreshing, onRefresh }) {
+export default function TopHeader({ activePage, lastUpdated, refreshing, onRefresh, dateFilter, setDateFilter }) {
   const [showNotif, setShowNotif]     = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
@@ -64,29 +64,77 @@ export default function TopHeader({ activePage, lastUpdated, refreshing, onRefre
         <span style={{ color: 'var(--text-secondary)' }}><SearchIcon /></span>
         <input
           type="text"
-          placeholder="Searchâ€¦"
+          placeholder="Search…"
           className="bg-transparent outline-none text-xs w-full"
           style={{ color: 'var(--text-primary)' }}
         />
       </div>
 
-      {/* â”€â”€ Refresh button (analytics only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Refresh button & Date Filter (analytics only) ────────────────────── */}
       {activePage === 'analytics' && (
-        <button
-          onClick={onRefresh}
-          disabled={refreshing}
-          className="flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-medium transition-all duration-200 disabled:opacity-50"
-          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
-          onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
-          onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
-          title="Refresh data"
-        >
-          <RefreshIcon spinning={refreshing} />
-          <span className="hidden sm:block">{refreshing ? 'Refreshingâ€¦' : 'Refresh'}</span>
-        </button>
+        <div className="flex items-center gap-2">
+          {dateFilter?.startsWith('custom_') && (
+            <div className="flex items-center gap-1.5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '6px', padding: '2px 6px' }}>
+               <input 
+                 type="date" 
+                 value={dateFilter.split('_')[1] || ''}
+                 onChange={(e) => {
+                   const parts = dateFilter.split('_');
+                   setDateFilter(`custom_${e.target.value}_${parts[2] || e.target.value}`);
+                 }}
+                 className="bg-transparent outline-none text-xs text-white"
+                 style={{ colorScheme: 'dark' }}
+               />
+               <span className="text-xs text-gray-500">to</span>
+               <input 
+                 type="date" 
+                 value={dateFilter.split('_')[2] || ''}
+                 onChange={(e) => {
+                   const parts = dateFilter.split('_');
+                   setDateFilter(`custom_${parts[1] || e.target.value}_${e.target.value}`);
+                 }}
+                 className="bg-transparent outline-none text-xs text-white"
+                 style={{ colorScheme: 'dark' }}
+               />
+            </div>
+          )}
+          <select
+            value={dateFilter?.startsWith('custom_') ? 'custom' : dateFilter}
+            onChange={(e) => {
+              if (e.target.value === 'custom') {
+                 const end = new Date().toISOString().split('T')[0];
+                 const start = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+                 setDateFilter(`custom_${start}_${end}`);
+              } else {
+                 setDateFilter(e.target.value);
+              }
+            }}
+            className="outline-none text-xs font-medium rounded-md px-2 py-1.5 transition-all duration-200 cursor-pointer"
+            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+          >
+            <option value="today" style={{ background: 'var(--bg-card)' }}>Today</option>
+            <option value="yesterday" style={{ background: 'var(--bg-card)' }}>Yesterday</option>
+            <option value="last7days" style={{ background: 'var(--bg-card)' }}>Last 7 days</option>
+            <option value="last28days" style={{ background: 'var(--bg-card)' }}>Last 28 days</option>
+            <option value="last30days" style={{ background: 'var(--bg-card)' }}>Last 30 days</option>
+            <option value="custom" style={{ background: 'var(--bg-card)' }}>Custom Range...</option>
+          </select>
+          <button
+            onClick={onRefresh}
+            disabled={refreshing}
+            className="flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-medium transition-all duration-200 disabled:opacity-50"
+            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+            title="Refresh data"
+          >
+            <RefreshIcon spinning={refreshing} />
+            <span className="hidden sm:block">{refreshing ? 'Refreshing…' : 'Refresh'}</span>
+          </button>
+        </div>
       )}
 
-      {/* â”€â”€ Notifications â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Notifications ───────────────────────────────────────────────────── */}
       <div className="relative">
         <button
           onClick={() => { setShowNotif(p => !p); setShowProfile(false); }}

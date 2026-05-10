@@ -10,8 +10,9 @@ import useRealtimeData from './hooks/useRealtimeData';
 export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [activePage, setActivePage] = useState('analytics');
+  const [dateFilter, setDateFilter] = useState('last7days');
 
-  const { data, loading, error, lastUpdated, refreshing, refresh } = useRealtimeData();
+  const { data, loading, error, lastUpdated, refreshing, refresh } = useRealtimeData(dateFilter);
 
   const handleNavClick = useCallback((pageId) => {
     setActivePage(pageId);
@@ -36,11 +37,13 @@ export default function App() {
           refreshing={refreshing}
           onRefresh={refresh}
           sidebarCollapsed={sidebarCollapsed}
+          dateFilter={dateFilter}
+          setDateFilter={setDateFilter}
         />
 
         {/* Content */}
         <main className="flex-1 overflow-y-auto custom-scroll p-5 lg:p-6">
-          {activePage === 'analytics'     && <AnalyticsPage data={data} loading={loading} error={error} onRetry={refresh} />}
+          {activePage === 'analytics'     && <AnalyticsPage data={data} loading={loading} error={error} onRetry={refresh} dateFilter={dateFilter} />}
           {activePage === 'google_ads'    && <GoogleAdsPage />}
           {activePage === 'facebook_ads'  && <FacebookAdsPage />}
           {activePage === 'linkedin'      && <LinkedInPage />}

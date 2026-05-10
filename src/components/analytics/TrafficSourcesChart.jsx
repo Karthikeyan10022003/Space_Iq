@@ -17,13 +17,13 @@ function CustomTooltip({ active, payload, label }) {
 }
 
 export default function TrafficSourcesChart({ sources }) {
-  const maxUsers = Math.max(...(sources || []).map(s => s.sessions || s.activeUsers || 0));
-  const data = (sources || []).map(s => {
+  const palette = ['#f6d8a0', '#eab308', '#ca8a04', '#a16207', '#854d0e', '#713f12', '#422006'];
+  const data = (sources || []).map((s, index) => {
     const val = s.sessions || s.activeUsers || 0;
     return {
       source: s.channel,
       users: val,
-      color: val === maxUsers ? 'var(--accent-gold)' : 'rgba(255,255,255,0.1)',
+      color: palette[index % palette.length],
     };
   });
   const total = data.reduce((s, d) => s + d.users, 0);
@@ -34,7 +34,7 @@ export default function TrafficSourcesChart({ sources }) {
       <div className="flex items-center justify-between mb-5">
         <div>
           <h2 className="text-sm font-semibold text-white">Traffic Sources</h2>
-          <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>By channel Â· last 7 days</p>
+          <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>By channel</p>
         </div>
       </div>
 

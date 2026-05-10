@@ -14,7 +14,22 @@ function CustomTooltip({ active, payload }) {
   );
 }
 
-export default function DevicePieChart({ devices }) {
+export default function DevicePieChart({ devices, dateFilter }) {
+  const filterLabels = {
+    today: 'today',
+    yesterday: 'yesterday',
+    last7days: 'last 7 days',
+    last28days: 'last 28 days',
+    last30days: 'last 30 days',
+  };
+  let label = filterLabels[dateFilter] || 'last 7 days';
+  if (dateFilter?.startsWith('custom_')) {
+    const parts = dateFilter.split('_');
+    if (parts.length === 3) {
+      label = `${parts[1]} to ${parts[2]}`;
+    }
+  }
+
   const maxSessions = Math.max(...(devices || []).map(d => d.sessions || 0));
 
   const data = (devices || []).map(d => ({
@@ -30,7 +45,7 @@ export default function DevicePieChart({ devices }) {
       {/* Header */}
       <div className="mb-4">
         <h2 className="text-sm font-semibold text-white">Device Breakdown</h2>
-        <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>Sessions by device Â· last 7 days</p>
+        <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>Sessions by device Â· {label}</p>
       </div>
 
       {/* Pie chart */}

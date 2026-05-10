@@ -7,7 +7,7 @@ import TrafficSourcesChart from '../components/analytics/TrafficSourcesChart';
 import AnalyticsSkeleton from '../components/ui/AnalyticsSkeleton';
 import ErrorState from '../components/ui/ErrorState';
 
-export default function AnalyticsPage({ data, loading, error, onRetry }) {
+export default function AnalyticsPage({ data, loading, error, onRetry, dateFilter }) {
   if (loading) return <AnalyticsSkeleton />;
   if (error)   return <ErrorState error={error} onRetry={onRetry} />;
   if (!data)   return null;
@@ -21,7 +21,7 @@ export default function AnalyticsPage({ data, loading, error, onRetry }) {
   return (
     <div className="space-y-6">
       {/* ── KPI Cards ──────────────────────────────────────────────────────── */}
-      <KPICards data={data} />
+      <KPICards data={data} dateFilter={dateFilter} />
 
       {/* ── Traffic over time ──────────────────────────────────────────────── */}
       <TrafficLineChart data={realtime.usersPerMinute ?? []} />
@@ -31,7 +31,7 @@ export default function AnalyticsPage({ data, loading, error, onRetry }) {
         <div className="lg:col-span-2">
           <TrafficSourcesChart sources={sourcesData} />
         </div>
-        <DevicePieChart devices={devicesData} />
+        <DevicePieChart devices={devicesData} dateFilter={dateFilter} />
       </div>
 
       {/* ── Top Pages & Countries ──────────────────────────────────────────── */}

@@ -177,10 +177,27 @@ const getRealtimeCountries = async () => {
     };
 };
 
-const getOverview = async () => {
+const getDateRange = (filter) => {
+    if (filter && filter.startsWith('custom_')) {
+        const parts = filter.split('_');
+        if (parts.length === 3) {
+            return { startDate: parts[1], endDate: parts[2] };
+        }
+    }
+    switch (filter) {
+        case 'today': return { startDate: 'today', endDate: 'today' };
+        case 'yesterday': return { startDate: 'yesterday', endDate: 'yesterday' };
+        case 'last28days': return { startDate: '28daysAgo', endDate: 'today' };
+        case 'last30days': return { startDate: '30daysAgo', endDate: 'today' };
+        case 'last7days':
+        default: return { startDate: '7daysAgo', endDate: 'today' };
+    }
+};
+
+const getOverview = async (startDate = "7daysAgo", endDate = "today") => {
     const [summaryData, trendData] = await Promise.all([
         runReport({
-            dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
+            dateRanges: [{ startDate, endDate }],
             metrics: [
                 { name: "activeUsers" },
                 { name: "eventCount" },
@@ -191,7 +208,7 @@ const getOverview = async () => {
             ],
         }),
         runReport({
-            dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
+            dateRanges: [{ startDate, endDate }],
             dimensions: [{ name: "date" }],
             metrics: [
                 { name: "activeUsers" },
@@ -226,9 +243,9 @@ const getOverview = async () => {
     };
 };
 
-const getPages = async (limit = 10) => {
+const getPages = async (limit = 10, startDate = "7daysAgo", endDate = "today") => {
     const data = await runReport({
-        dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
+        dateRanges: [{ startDate, endDate }],
         dimensions: [{ name: "pagePath" }, { name: "pageTitle" }],
         metrics: [
             { name: "screenPageViews" },
@@ -254,9 +271,9 @@ const getPages = async (limit = 10) => {
     };
 };
 
-const getSources = async () => {
+const getSources = async (startDate = "7daysAgo", endDate = "today") => {
     const data = await runReport({
-        dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
+        dateRanges: [{ startDate, endDate }],
         dimensions: [{ name: "sessionDefaultChannelGroup" }],
         metrics: [
             { name: "sessions" },
@@ -276,9 +293,9 @@ const getSources = async () => {
     };
 };
 
-const getDevices = async () => {
+const getDevices = async (startDate = "7daysAgo", endDate = "today") => {
     const data = await runReport({
-        dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
+        dateRanges: [{ startDate, endDate }],
         dimensions: [{ name: "deviceCategory" }],
         metrics: [{ name: "activeUsers" }, { name: "sessions" }],
         orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
@@ -353,14 +370,15 @@ app.get("/api/devices", requireAuth, async (req, res) => {
 
 app.get("/api/dashboard", requireAuth, async (req, res) => {
     try {
+        const { startDate, endDate } = getDateRange(req.query.filter);
         const [realtime, realtimeCountries, overview, pages, sources, devices] =
             await Promise.allSettled([
                 getRealtimeAll(),
                 getRealtimeCountries(),
-                getOverview(),
-                getPages(),
-                getSources(),
-                getDevices(),
+                getOverview(startDate, endDate),
+                getPages(10, startDate, endDate),
+                getSources(startDate, endDate),
+                getDevices(startDate, endDate),
             ]);
 
         res.json({

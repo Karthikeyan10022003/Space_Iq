@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-const API_URL = '/api/dashboard';
 const POLL_INTERVAL = 30_000;
 
-export default function useRealtimeData() {
+export default function useRealtimeData(dateFilter = 'last7days') {
   const [data, setData]           = useState(null);
   const [loading, setLoading]     = useState(true);
   const [error, setError]         = useState(null);
@@ -14,7 +13,7 @@ export default function useRealtimeData() {
   const fetchData = useCallback(async (isManual = false) => {
     if (isManual) setRefreshing(true);
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch(`/api/dashboard?filter=${dateFilter}`);
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         throw new Error(body.error || `HTTP ${res.status}`);
@@ -29,7 +28,7 @@ export default function useRealtimeData() {
       setLoading(false);
       setRefreshing(false);
     }
-  }, []);
+  }, [dateFilter]);
 
   useEffect(() => {
     fetchData();

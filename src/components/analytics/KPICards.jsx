@@ -48,7 +48,25 @@ function MetricCard({ title, value, sub, icon, isKeyMetric, trend, delay = 0 }) 
   );
 }
 
-export default function KPICards({ data }) {
+export default function KPICards({ data, dateFilter }) {
+  const filterLabels = {
+    today: 'Today',
+    yesterday: 'Yesterday',
+    last7days: 'Last 7 days',
+    last28days: 'Last 28 days',
+    last30days: 'Last 30 days',
+  };
+  let label = filterLabels[dateFilter] || 'Last 7 days';
+  let overviewTitle = filterLabels[dateFilter] ? `${filterLabels[dateFilter]} Overview` : '7-Day Overview';
+
+  if (dateFilter?.startsWith('custom_')) {
+    const parts = dateFilter.split('_');
+    if (parts.length === 3) {
+      label = `${parts[1]} to ${parts[2]}`;
+      overviewTitle = 'Custom Range Overview';
+    }
+  }
+
   const overview = data?.overview?.summary ?? {};
   const realtime = data?.realtime ?? {};
 
@@ -64,7 +82,7 @@ export default function KPICards({ data }) {
     {
       title: 'Weekly Active Users',
       value: (overview.activeUsers ?? 0).toLocaleString(),
-      sub: 'Last 7 days',
+      sub: label,
       isKeyMetric: true,
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -76,7 +94,7 @@ export default function KPICards({ data }) {
     {
       title: 'New Users',
       value: (overview.newUsers ?? 0).toLocaleString(),
-      sub: 'Last 7 days',
+      sub: label,
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/>
@@ -87,7 +105,7 @@ export default function KPICards({ data }) {
     {
       title: 'Total Sessions',
       value: (overview.sessions ?? 0).toLocaleString(),
-      sub: 'Last 7 days',
+      sub: label,
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
@@ -98,7 +116,7 @@ export default function KPICards({ data }) {
     {
       title: 'Total Events',
       value: (overview.eventCount ?? 0).toLocaleString(),
-      sub: 'Last 7 days',
+      sub: label,
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
@@ -108,7 +126,7 @@ export default function KPICards({ data }) {
     {
       title: 'Bounce Rate',
       value: `${Math.round((overview.bounceRate || 0) * 100)}%`,
-      sub: 'Last 7 days',
+      sub: label,
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
@@ -168,7 +186,7 @@ export default function KPICards({ data }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-sm font-semibold text-white mb-3 tracking-wide">7-Day Overview</h2>
+        <h2 className="text-sm font-semibold text-white mb-3 tracking-wide">{overviewTitle}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {cards.slice(0, 5).map((c, i) => (
             <MetricCard key={c.title} {...c} delay={i * 60} />
